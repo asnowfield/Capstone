@@ -6,9 +6,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/board?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password:
+    url: jdbc:mysql://${TODO_MYSQL_HOST:${TODO_MYSQL_PORT}/${TODO_DATA_BASE_NAME}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${TODO_MYSQL_USER_NAME}
+    password: ${TODO_MYSQL_PASSWORD}
   thymeleaf:
     cache: false
 

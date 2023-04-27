@@ -10,11 +10,17 @@
   writer: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
   pass: <input type="text" name="boardPass" id="boardPass"> <br>
   title: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
-  contents: <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
+  contents: <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}" onkeydown="handleKeyDown(event)"></textarea> <br>
   <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
   <input type="button" value="글수정" onclick="boardUpdate()">
 </form>
 <script th:inline="javascript">
+  handleKeyDown = (event) => {
+      if (event.ctrlKey && event.keyCode === 66) {
+        // Ctrl+B is pressed
+        document.execCommand('bold', false, null);
+        event.preventDefault();
+      }
   const boardUpdate = () => {
     const pass = [[${boardUpdate.boardPass}]];
     const inputPass = document.getElementById("boardPass").value;

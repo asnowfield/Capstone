@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://svc.sel3.cloudtype.app:30891/mysql?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://svc.sel3.cloudtype.app:30891/board?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: 1234
   thymeleaf:

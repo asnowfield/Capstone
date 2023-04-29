@@ -75,14 +75,3 @@ public class BoardEntity extends BaseEntity {
         return boardEntity;
     }
 }
-
-
-
-
-
-
-
-
-
-
-

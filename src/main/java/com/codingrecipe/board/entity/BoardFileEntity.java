@@ -32,16 +32,3 @@ public class BoardFileEntity extends BaseEntity {
         return boardFileEntity;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

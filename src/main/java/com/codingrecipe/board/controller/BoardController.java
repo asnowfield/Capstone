@@ -34,14 +34,6 @@ public class BoardController {
         return "index";
     }
 
-    @GetMapping("/")
-    public String findAll(Model model) {
-        // DB에서 전체 게시글 데이터를 가져와서 list.html에 보여준다.
-        List<BoardDTO> boardDTOList = boardService.findAll();
-        model.addAttribute("boardList", boardDTOList);
-        return "list";
-    }
-
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model,
                            @PageableDefault(page=1) Pageable pageable) {
@@ -62,14 +54,16 @@ public class BoardController {
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
         BoardDTO boardDTO = boardService.findById(id);
-        model.addAttribute("boardForm", boardDTO);
+        model.addAttribute("boardUpdate", boardDTO);
         return "update";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model,
+                         @PageableDefault(page=1) Pageable pageable) {
         BoardDTO board = boardService.update(boardDTO);
         model.addAttribute("board", board);
+        model.addAttribute("page",pageable.getPageNumber());
         return "detail";
 //        return "redirect:/board/" + boardDTO.getId();
     }
@@ -104,22 +98,16 @@ public class BoardController {
 
     }
     @GetMapping("/login")
-    public String loginForm() {
+    public String toLogin() {
         return "login";
     }
+
     @PostMapping("/login")
-    public String toHome() {
+    public String afterLogin() {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String toHome() { return "index"; }
+
 }
-
-
-
-
-
-
-
-
-
-

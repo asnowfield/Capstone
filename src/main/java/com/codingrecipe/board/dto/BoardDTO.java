@@ -57,7 +57,6 @@ public class BoardDTO {
             boardDTO.setOriginalFileName(boardEntity.getBoardFileEntityList().get(0).getOriginalFileName());
             boardDTO.setStoredFileName(boardEntity.getBoardFileEntityList().get(0).getStoredFileName());
         }
-
         return boardDTO;
     }
 }

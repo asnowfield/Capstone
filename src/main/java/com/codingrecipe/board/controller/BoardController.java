@@ -103,6 +103,14 @@ public class BoardController {
         return "paging";
 
     }
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
+    @PostMapping("/login")
+    public String toHome() {
+        return "index";
+    }
 
 }
 

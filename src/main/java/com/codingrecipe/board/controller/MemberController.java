@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.metamodel.StaticMetamodel;
 
-import static jdk.internal.org.jline.utils.Colors.s;
+
 
 
 @Controller
@@ -33,6 +33,7 @@ public class MemberController {
             return "save"; // 가입이 실패한 경우
     }
 
+    /*
     @GetMapping("/login")
     public String login(@StaticMetamodel(MemberDTO memberDTO, HttpSession session){
         boolean loginResult = memberService.login(memberDTO);
@@ -43,5 +44,7 @@ public class MemberController {
         else
             return "login";
         }
-    }
+
+     */
+
 }

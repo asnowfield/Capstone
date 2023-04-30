@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 // DTO(Data Transfer Object), VO, Bean,         Entity
 @Getter
+@Builder
 @Setter
 @ToString
 @NoArgsConstructor // 기본생성자
@@ -58,5 +59,14 @@ public class BoardDTO {
             boardDTO.setStoredFileName(boardEntity.getBoardFileEntityList().get(0).getStoredFileName());
         }
         return boardDTO;
+    }
+
+    public static BoardDTO ConvertEntityToDTO(BoardEntity boardEntity){
+        return BoardDTO.builder()
+                .id(boardEntity.getId())
+                .boardTitle(boardEntity.getBoardTitle())
+                .boardContents(boardEntity.getBoardContents())
+                .build();
+
     }
 }

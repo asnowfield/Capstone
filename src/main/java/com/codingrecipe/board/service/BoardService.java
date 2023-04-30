@@ -5,6 +5,7 @@ import com.codingrecipe.board.entity.BoardEntity;
 import com.codingrecipe.board.entity.BoardFileEntity;
 import com.codingrecipe.board.repository.BoardFileRepository;
 import com.codingrecipe.board.repository.BoardRepository;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -122,6 +123,20 @@ public class BoardService {
         Page<BoardDTO> boardDTOS = boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime()));//, board.getBoardWriter()
         return boardDTOS;
     }
+    @Builder
+    public List<BoardDTO> searchPosts(String keyword){
+        List<BoardEntity> boardEntities=boardRepository.finkdByTitleContaining(keyword);
+        List<BoardDTO> boardDTOList = new ArrayList<>();
+
+        if(boardEntities.isEmpty())
+            return boardDTOList;
+        for(BoardEntity boardEntity : boardEntities){
+            boardDTOList.add(BoardDTO.ConvertEntityToDTO(boardEntity));
+        }
+        return boardDTOList;
+    }
+
+
 }
 
 

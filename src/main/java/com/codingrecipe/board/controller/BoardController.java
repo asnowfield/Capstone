@@ -103,6 +103,13 @@ public class BoardController {
         return "paging";
 
     }
+    public String search(@RequestParam(value="keyword") String keyword, Model model){
+        List<BoardDTO> boardDTOList = boardService.searchPosts(keyword);
+        model.addAttribute("boardList",boardDTOList);
+
+        return "board/list.html";
+    }
+
     @GetMapping("/login")
     public String loginForm() {
         return "login";

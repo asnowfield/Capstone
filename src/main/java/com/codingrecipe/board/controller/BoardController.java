@@ -34,6 +34,14 @@ public class BoardController {
         return "index";
     }
 
+    @GetMapping("/")
+    public String findAll(Model model) {
+        // DB에서 전체 게시글 데이터를 가져와서 list.html에 보여준다.
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "list";
+    }
+
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model,
                            @PageableDefault(page=1) Pageable pageable) {
@@ -54,16 +62,14 @@ public class BoardController {
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
         BoardDTO boardDTO = boardService.findById(id);
-        model.addAttribute("boardUpdate", boardDTO);
+        model.addAttribute("boardForm", boardDTO);
         return "update";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute BoardDTO boardDTO, Model model,
-                         @PageableDefault(page=1) Pageable pageable) {
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
         BoardDTO board = boardService.update(boardDTO);
         model.addAttribute("board", board);
-        model.addAttribute("page",pageable.getPageNumber());
         return "detail";
 //        return "redirect:/board/" + boardDTO.getId();
     }
@@ -97,17 +103,30 @@ public class BoardController {
         return "paging";
 
     }
-    @GetMapping("/login")
-    public String toLogin() {
-        return "login";
+    public String search(@RequestParam(value="keyword") String keyword, Model model){
+        List<BoardDTO> boardDTOList = boardService.searchPosts(keyword);
+        model.addAttribute("boardList",boardDTOList);
+
+        return "board/list.html";
     }
 
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
     @PostMapping("/login")
-    public String afterLogin() {
+    public String toHome() {
         return "index";
     }
 
-    @GetMapping("/home")
-    public String toHome() { return "index"; }
-
 }
+
+
+
+
+
+
+
+
+
+

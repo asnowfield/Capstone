@@ -24,13 +24,13 @@
                         <th class="count">조회</th>
                     </tr>
                     <tr class="top" th:each="board: ${boardList}">
-                        <td class="num" th:text="${board.id}">aaaaaa</td>
+                        <td class="num" th:text="${board.id}"></td>
                         <td class="titleContent"><a th:href="@{|/board/${board.id}|(page=${boardList.number + 1})}"
-                                th:text="${board.boardTitle}">aaaaaaaaa</a></td>
-                        <td class="writer" th:text="김이름">aaaaaaaaaa</td>
+                                th:text="${board.boardTitle}"></a></td>
+                        <td class="writer" th:text="김이름"></td>
                         <td class="date" th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}">
-                        aaaaaaaaaaa</td>
-                        <td class="count" th:text="${board.boardHits}">aaaaaaaaaaaa</td>
+                        </td>
+                        <td class="count" th:text="${board.boardHits}"></td>
                     </tr>
                 </div>
             </div>
@@ -43,7 +43,7 @@
 
                             <!-- for(int page=startPage; page<=endPage; page++) -->
                             <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
-                                <span class="num" th:if="${page == boardList.number + 1}" th:text="${page}"></span>
+                                <span  th:if="${page == boardList.number + 1}" th:text="${page}"></span>
                                 <span th:unless="${page == boardList.number + 1}">
                                     <a class="num" th:href="@{/board/paging(page=${page})}" th:text="${page}"></a>
                                 </span>

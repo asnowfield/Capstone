@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" href="/css/paging.css">
+</head>
+
+<body>
+    <div class="board_wrap">
+        <table>
+            <div class="board_title">
+                <strong>김이름님! 안녕하세요.</strong>
+                <p>김이름님이 작성한 게시글입니다.</p>
+            </div>
+            <div class="board_list_wrap">
+                <div class="board_list">
+                    <tr class="top">
+                        <th class="num">번호</th>
+                        <th class="title">제목</th>
+                        <th class="writer">글쓴이</th>
+                        <th class="date">날짜</th>
+                        <th class="count">조회</th>
+                    </tr>
+                    <tr class="top" th:each="board: ${boardList}">
+                        <td class="num" th:text="${board.id}">aaaaaa</td>
+                        <td class="titleContent"><a th:href="@{|/board/${board.id}|(page=${boardList.number + 1})}"
+                                th:text="${board.boardTitle}">aaaaaaaaa</a></td>
+                        <td class="writer" th:text="김이름">aaaaaaaaaa</td>
+                        <td class="date" th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}">
+                        aaaaaaaaaaa</td>
+                        <td class="count" th:text="${board.boardHits}">aaaaaaaaaaaa</td>
+                    </tr>
+                </div>
+            </div>
+        </table>
+        <div class="pagingNumber">
+            <a class="bt first" th:href="@{/board/paging(page=1)}">
+                << </a>
+                    <a class="bt prev" th:href="${boardList.first} ? '#' : @{/board/paging(page=${boardList.number})}">
+                        < </a>
+
+                            <!-- for(int page=startPage; page<=endPage; page++) -->
+                            <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+                                <span class="num" th:if="${page == boardList.number + 1}" th:text="${page}"></span>
+                                <span th:unless="${page == boardList.number + 1}">
+                                    <a class="num" th:href="@{/board/paging(page=${page})}" th:text="${page}"></a>
+                                </span>
+                            </span>
+
+                            <a class="bt next"
+                                th:href="${boardList.last} ? '#' : @{/board/paging(page=${boardList.number + 2})}">></a>
+                            <a class="bt last" th:href="@{/board/paging(page=${boardList.totalPages})}">>></a>
+        </div>
+        <div class="bt_wrap pagingNumber">
+            <a href="/board/save" class="on">글 작성</a>
+            <a href="/board/home" class="on">홈 으로</a>
+        </div>
+    </div>
+</body>
+
+</html>

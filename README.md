@@ -35,6 +35,8 @@
    - github에 올려놓은 코드를 보시고 어떤 부분이 바뀌는지 잘 살펴봐주세요. 
 
     - board_table(부모) - board_file_table(자식)
+8. 회원 기능.
+
 ```
 create table board_table
 (

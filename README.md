@@ -79,3 +79,9 @@ create database [db_name];
 create user [db_username] identified by '1234';
 grant all privileges on [db_name].* to [db_username];
 ```
+
+
+# Todo
+1. add member.
+2. upgrade board that has a function a member.
+3. 

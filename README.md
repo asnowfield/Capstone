@@ -45,9 +45,7 @@ created_time   datetime     null,
 updated_time   datetime     null,
 board_contents varchar(500) null,
 board_hits     int          null,
-board_pass     varchar(255) null,
 board_title    varchar(255) null,
-board_writer   varchar(20)  not null,
 file_attached  int          null
 );
 
@@ -63,7 +61,7 @@ constraint FKcfxqly70ddd02xbou0jxgh4o3
     foreign key (board_id) references board_table (id) on delete cascade
 );
 ```
-
+There is no necesary to create a comment table.
 
 
 

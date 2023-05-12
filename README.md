@@ -61,7 +61,7 @@ constraint FKcfxqly70ddd02xbou0jxgh4o3
     foreign key (board_id) references board_table (id) on delete cascade
 );
 ```
-There is no necesary to create a comment table.
+There is no necessary to create a comment table.
 
 
 

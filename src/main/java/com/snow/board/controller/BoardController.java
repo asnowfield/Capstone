@@ -29,9 +29,8 @@ public class BoardController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
-        System.out.println("boardDTO = " + boardDTO);
         boardService.save(boardDTO);
-        return "index";
+        return "redirect:/board/paging";
     }
 
     @GetMapping("/{id}")
@@ -90,8 +89,4 @@ public class BoardController {
     public String afterLogin() {
         return "index";
     }
-
-    @GetMapping("/home")
-    public String toHome() { return "index"; }
-
 }

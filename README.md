@@ -17,7 +17,7 @@
 ><img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
 
 
-
+---
 
 <!-- <img src="https://img.shields.io/badge/기술이름-#제외색상번호?style=for-the-badge&logo=아이콘이름&logoColor=white"> -->
 # Board 주요기능 
@@ -60,13 +60,7 @@ constraint FKcfxqly70ddd02xbou0jxgh4o3
 ```
 There is no necessary to create a comment table, member table.
 
-
-
-
-
-
-
-
+---
 
 ## mysql DataBase 계정 생성 및 권한 부여 
 ```
@@ -78,4 +72,3 @@ grant all privileges on [db_name].* to [db_username];
 
 # Todo
 1. upgrade board that has a function a member.
-2. 

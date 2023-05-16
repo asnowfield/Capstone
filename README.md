@@ -1,41 +1,38 @@
-# 개발환경
-1. IDE: IntelliJ IDEA Community
-2. Spring Boot 2.6.13 
-3. JDK 11
-4. mysql
-5. Spring Data JPA
-6. Thymeleaf
+# Stack
+**FE**
+><img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
+><img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+><img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+><img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+><img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
+><img src="https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white">
+**BE**
+><img src="https://img.shields.io/badge/intellijidea-000000?style=for-the-badge&logo=intellijidea&logoColor=white">
+><img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+><img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
+><img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> 
+**DB**
+><img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+><img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
 
-# 게시판 주요기능 
-1. 글쓰기(/board/save)
-2. 글목록(/board/)
-3. 글조회(/board/{id})
-4. 글수정(/board/update/{id})
-    - 상세화면에서 수정 버튼 클릭 
-    - 서버에서 해당 게시글의 정보를 가지고 수정 화면 출력 
-    - 제목, 내용 수정 입력 받아서 서버로 요청 
-    - 수정 처리 
-5. 글삭제(/board/delete/{id})
-6. 페이징처리(/board/paging)
-    - /board/paging?page=2
-    - /board/paging/2
-    - 게시글 14
-      - 한페이지에 5개씩 => 3개
-      - 한페이지에 3개씩 => 5개
-7. 파일(이미지)첨부하기 
-   - 단일 파일 첨부
-   - 다중 파일 첨부
-   - 파일 첨부와 관련하여 추가될 부분들  
-     - save.html  
-     - BoardDTO  
-     - BoardService.save()  
-     - BoardEntity
-     - BoardFileEntity, BoardFileRepository 추가
-     - detail.html
-   - github에 올려놓은 코드를 보시고 어떤 부분이 바뀌는지 잘 살펴봐주세요. 
 
-    - board_table(부모) - board_file_table(자식)
-8. 회원 기능.
+
+
+<!-- <img src="https://img.shields.io/badge/기술이름-#제외색상번호?style=for-the-badge&logo=아이콘이름&logoColor=white"> -->
+# Board 주요기능 
+1. Write
+2. Search
+3. Update
+4. Delete
+5. Paging
+
+# Member 주요 기능
+1. Login
+2. Register
+3. Update
+4. Delete
+5. Unique E-mail
 
 ```
 create table board_table
@@ -61,7 +58,7 @@ constraint FKcfxqly70ddd02xbou0jxgh4o3
     foreign key (board_id) references board_table (id) on delete cascade
 );
 ```
-There is no necessary to create a comment table.
+There is no necessary to create a comment table, member table.
 
 
 
@@ -80,6 +77,5 @@ grant all privileges on [db_name].* to [db_username];
 
 
 # Todo
-1. add member.
-2. upgrade board that has a function a member.
-3. 
+1. upgrade board that has a function a member.
+2. 

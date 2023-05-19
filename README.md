@@ -72,3 +72,4 @@ grant all privileges on [db_name].* to [db_username];
 
 # Todo
 1. upgrade board that has a function a member.
+2.  on offline store a board in user device and when come to online sand a data to store a board that wrote before

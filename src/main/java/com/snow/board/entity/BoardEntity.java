@@ -1,6 +1,7 @@
 package com.snow.board.entity;
 
 import com.snow.board.dto.BoardDTO;
+import com.snow.board.dto.MemberDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +19,8 @@ public class BoardEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
     private Long id;
 
-//    @Column(length = 20, nullable = false) // 크기 20, not null
-//    private String boardWriter;
-
-//    @Column // 크기 255, null 가능
-//    private String boardPass;
+    @Column(length = 20, nullable = false) // 크기 20, not null
+    private String boardWriter;
 
     @Column
     private String boardTitle;
@@ -44,8 +42,7 @@ public class BoardEntity extends BaseEntity {
 
     public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
-//        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-//        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(0);
@@ -56,8 +53,7 @@ public class BoardEntity extends BaseEntity {
     public static BoardEntity toUpdateEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setId(boardDTO.getId());
-//        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-//        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(boardDTO.getBoardHits());
@@ -66,8 +62,7 @@ public class BoardEntity extends BaseEntity {
 
     public static BoardEntity toSaveFileEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
-//        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-//        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(0);

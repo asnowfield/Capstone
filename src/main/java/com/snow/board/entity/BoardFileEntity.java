@@ -2,7 +2,6 @@ package com.snow.board.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity

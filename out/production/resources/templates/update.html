@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/writing.css">
+  <title>update</title>
+</head>
+<body>
+
+<form action="/board/update" method="post" name="updateForm">
+
+  <input type="hidden" name="id" th:value="${boardUpdate.id}">
+  <div class='title_form'>
+    <input class="text-field1" autocomplete="on" placeholder="제목을 입력해주세요" type="text" name="boardTitle"th:value="${boardUpdate.boardTitle}">
+  </div><br>
+  <div class='content_form'>
+    <textarea placeholder="내용을 입력해주세요" autocomplete="on" class="text-field2" name="boardContents" cols="30" rows="10"th:text="${boardUpdate.boardContents}"></textarea>
+  </div><br>
+  <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
+  <input class='writing_out' type="button" value="글수정" onclick="boardUpdate()">
+</form>
+
+<script th:inline="javascript">
+  const boardUpdate = () => {
+    document.updateForm.submit();
+  }
+</script>
+</body>
+</html>

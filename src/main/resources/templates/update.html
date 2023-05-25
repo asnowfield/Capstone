@@ -8,6 +8,7 @@
 <body>
 
 <form action="/board/update" method="post" name="updateForm">
+  writer: <input type="text" name="boardWriter" id="boardWriter" class="hidden"> <br>
 
   <input type="hidden" name="id" th:value="${boardUpdate.id}">
   <div class='title_form'>
@@ -24,6 +25,8 @@
   const boardUpdate = () => {
     document.updateForm.submit();
   }
+  var memberName = /*[[${member.memberName}]]*/ '';
+  document.getElementById("boardWriter").value = memberName;
 </script>
 </body>
 </html>

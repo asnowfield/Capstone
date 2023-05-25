@@ -43,7 +43,7 @@
                         < </a>
                             <!-- for(int page=startPage; page<=endPage; page++) -->
                             <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
-                                <span  th:if="${page == boardList.number + 1}" th:text="${page}"></span>
+                                <span th:if="${page == boardList.number + 1}" th:text="${page}"></span>
                                 <span th:unless="${page == boardList.number + 1}">
                                     <a class="num" th:href="@{/board/paging(page=${page})}" th:text="${page}"></a>
                                 </span>

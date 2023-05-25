@@ -25,7 +25,10 @@ public class BoardController {
     private final CommentService commentService;
 
     @GetMapping("/board/save")
-    public String saveForm() {
+    public String saveForm(HttpSession session, Model model) {
+        String myEmail = (String) session.getAttribute("loginEmail");
+        MemberDTO showMemberDTO = memberService.updateForm(myEmail);
+        model.addAttribute("member",showMemberDTO);
         return "save";
     }
 
@@ -52,9 +55,13 @@ public class BoardController {
     }
 
     @GetMapping("/board/update/{id}")
-    public String updateForm(@PathVariable Long id, Model model) {
+    public String updateForm(@PathVariable Long id, Model model, HttpSession session) {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("boardUpdate", boardDTO);
+
+        String myEmail = (String) session.getAttribute("loginEmail");
+        MemberDTO showMemberDTO = memberService.updateForm(myEmail);
+        model.addAttribute("member",showMemberDTO);
         return "update";
     }
 
@@ -163,8 +170,6 @@ public class BoardController {
             return "index";
         }
     }
-
-
 
     @GetMapping("/member/")
     public String findAll(Model model) {

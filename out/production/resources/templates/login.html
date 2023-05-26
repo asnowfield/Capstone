@@ -9,19 +9,16 @@
     <title>Login</title>
 </head>
 <body>
-<div id='desktop-1' class='desktop-1'>
+<div id='desktop-1' class='signFrame'>
     <form action="/member/login" method="post">
-        <div id='rectangle1' class='rectangle1'>
-            <input type="text" placeholder="ID를 입력해주세요" autocomplete="on" class="text-field" name="memberEmail">
-        </div>
-        <div id='rectangle2' class='rectangle2'>
-            <input type="password" placeholder="Password를 입력해주세요" class="text-field" name="memberPassword">
-        </div>
-        <div id='rectangle3' class='rectangle3'>
-            <input type="submit" class="submit-btn" value="Login">
-        </div>
+        <p>Enter Email</p>
+        <input type="text" autocomplete="on" name="memberEmail">
+        <p>Enter Password</p>
+        <input type="password" name="memberPassword"> <br>
+        <input type="submit" class="submitBtn" value="Sign in">
     </form>
-    <a href="/member/register">회원가입</a>
+    <p>계정이 없으신가요? <a href="/member/register">Sign Up</a> </p>
+
 </div>
 </body>
 </html>

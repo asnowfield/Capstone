@@ -8,31 +8,33 @@
 <body>
 <div id='desktop-2' class='desktop-2'>
     <form action="/board/save" method="post" enctype="multipart/form-data">
-        writer: <input type="text" name="boardWriter" id="boardWriter" class="hidden"> <br>
-
-        <div class='title_form'>
-            <input class="text-field1" autocomplete="on" placeholder="제목을 입력해주세요" type="text" name="boardTitle">
-        </div><br>
-
-        <div class='content_form'>
-            <textarea placeholder="내용을 입력해주세요" autocomplete="on" class="text-field2" name="boardContents" cols="30" rows="10"></textarea>
-        </div><br>
-
-        <div class="filebox">
-            <input class="upload-name" value="첨부파일" placeholder="첨부파일" type="file" name="boardFile">
-            <label for="file">파일 선택</label>
-            <input type="file" id="file">
-        </div><br>
-
-        <div class='writing_out'>
-            <input type="submit" class="submit-btn" value="글작성">
+        <input type="text" name="boardWriter" id="boardWriter" class="hidden">
+        <div class="writeFrame">
+            <input placeholder="제목을 입력해주세요" class="boardTitle" type="text" name="boardTitle" id="boardTitle">
+            <textarea class="boardContent" name="boardContents" id="boardContent"></textarea>
+            <input value="첨부파일" placeholder="첨부파일" type="file" name="boardFile" class="hidden">
+            <input type="submit" value="글작성" class="submit" id="submit">
         </div>
     </form>
-
 </div>
 <script th:inline="javascript">
     var memberName = /*[[${member.memberName}]]*/ '';
     document.getElementById("boardWriter").value = memberName;
+
+  const input = document.getElementById('boardTitle');
+  const textarea = document.getElementById('boardContent');
+
+  textarea.addEventListener('input', function() {
+    textarea.style.height = 'auto'; // Reset the height to auto
+    textarea.style.height = textarea.scrollHeight + 'px'; // Set the height based on content
+  });
+
+  input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  });
+
 </script>
 </body>
 </html>

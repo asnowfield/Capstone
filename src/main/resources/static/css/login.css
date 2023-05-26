@@ -9,18 +9,14 @@ body {
 font-size: 1.000em;
 background: linear-gradient(white, rgb(227, 223, 253));
 width: 97vw;
-height: 97vh;
+height: 98vh;
 }
-  
-  .desktop-1
-  {position:absolute; background-color:; height:1080px; width:1920px;padding:0px;}
-  .rectangle1
-  {background-color:#d9d9d9; height:46px; width:252px; border-radius:10px; left:771px; top:460px; position:absolute;}
-  .rectangle2
-  {background-color:#d9d9d9; height:46px; width:252px; border-radius:10px; top:519px; left:771px; position:absolute;}
-  .rectangle3
-  {background-color:#7c7c7c; height:105px; width:106px; border-radius:10px; top:460px; left:1043px; position:absolute;}
-
-.submit-btn {width:106%; height:105px; border-radius: 10px; padding:10px; font-size:20px; color: #ffffff; background-color: #7c7c7c; border: none;}
-.text-field {background-color:#d9d9d9; height:46px; width:252px; padding:10px; font-size:14px;
-  border-radius:10px; margin-bottom:10px; border:none;}
+.signFrame{
+text-align: center;
+background-color: snow;
+border-radius: 10px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}

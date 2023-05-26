@@ -1,15 +1,11 @@
-* {
-background-repeat: no-repeat;
-box-sizing: border-box;
-}
 a {
 text-decoration: none;
 }
-body {
+html {
 font-size: 1.000em;
 background: linear-gradient(white, rgb(227, 223, 253));
 width: 97vw;
-height: 97vh;
+min-height: 100vh;
 }
 
 img{

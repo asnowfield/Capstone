@@ -4,7 +4,7 @@ box-sizing: border-box;
 background-color:var(--bs-body-bg);
 }
 html, body {
-  min-height: 93vh;
+  min-height: 98vh;
   display: flex;
   flex-direction: column;
 }

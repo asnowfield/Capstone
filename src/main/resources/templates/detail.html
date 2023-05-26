@@ -11,7 +11,7 @@
 
 <body>
     <div class="board_wrap">
-        <td th:text="${board.boardTitle}"></td>
+        <div class="boardTitle"><td th:text="${board.boardTitle}"></td></div>
         <table>
             <tr class="info">
                 <th>번호</th>
@@ -36,7 +36,7 @@
             <button onclick="deleteReq()">삭제</button>
         </div>
     </div>
-    <div id="comment-write">
+    <div id="comment-write" class="commentFrame">
         <input type="text" id="commentWriter" class="hidden">
         <input type="text" id="commentContents" placeholder="내용">
         <button id="comment-write-btn" onclick="commentWrite()">댓글작성</button>
@@ -45,16 +45,16 @@
     <div id="comment-list">
         <table>
             <tr>
-                <th>댓글번호</th>
-                <th>작성자</th>
-                <th>내용</th>
-                <th>작성시간</th>
+                <th class="commentId">Id</th>
+                <th class="commentWriter">작성자</th>
+                <th class="commentContent">내용</th>
+                <th class="commentedTime">작성시간</th>
             </tr>
             <tr th:each="comment: ${commentList}">
-                <td th:text="${comment.id}"></td>
-                <td th:text="${comment.commentWriter}"></td>
-                <td th:text="${comment.commentContents}"></td>
-                <td th:text="${comment.commentCreatedTime}"></td>
+                <td class="commentId" th:text="${comment.id}"></td>
+                <td class="commentWriter" th:text="${comment.commentWriter}"></td>
+                <td class="commentContent" th:text="${comment.commentContents}"></td>
+                <td class="commentedTime" th:text="${comment.commentCreatedTime}"></td>
             </tr>
         </table>
     </div>
@@ -99,6 +99,17 @@
             }
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputElement = document.getElementById('comment-write-btn');
+        inputElement.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                commentWrite();
+            }
+        });
+    });
+
     const listReq = () => {
         const page = [[${ page }]];
         location.href = "/board/paging?page=" + page;

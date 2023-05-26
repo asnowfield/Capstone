@@ -1,3 +1,7 @@
+html {
+background: linear-gradient(white, rgb(227, 223, 253));
+min-height: 100vh;
+}
 a {
 text-decoration: none;
 }
@@ -9,10 +13,6 @@ tr td {
 }
 table{
   width: 100%;
-}
-body {
-background: linear-gradient(white, rgb(227, 223, 253));
-height: 98vh;
 }
 header{
 display: flex;

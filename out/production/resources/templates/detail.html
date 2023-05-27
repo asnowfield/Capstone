@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>detail</title>
@@ -8,28 +7,28 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
-
 <body>
     <div class="board_wrap">
-        <div class="boardTitle"><td th:text="${board.boardTitle}"></td></div>
+        <div class="boardTitle">
+            <td th:text="${board.boardTitle}"></td>
+        </div>
         <table>
             <tr class="info">
-                <th>번호</th>
+                <th class="frame">번호</th>
                 <td th:text="${board.id}"></td>
-                <th>글쓴이</th>
+                <th class="frame">글쓴이</th>
                 <td th:text="${board.boardWriter}"></td>
-                <th>작성일</th>
+                <th class="frame">작성일</th>
                 <td th:text="${board.boardCreatedTime}"></td>
-                <th>조회</th>
+                <th class="frame">조회</th>
                 <td th:text="${board.boardHits}"></td>
             </tr>
-            <tr>
-                <td class="content" th:text="${board.boardContents}">contents</td>
-            </tr>
+        </table>
+
+            <td class="boardContent" th:text="${board.boardContents}"></td>
             <tr th:if="${board.fileAttached == 1}">
                 <td><img th:src="@{|/upload/${board.storedFileName}|}"></td>
             </tr>
-        </table>
         <div class="bt_wrap">
             <button class="on" onclick="listReq()">목록</button>
             <button onclick="updateReq()">수정</button>
@@ -41,8 +40,7 @@
         <input type="text" id="commentContents" placeholder="내용">
         <button id="comment-write-btn" onclick="commentWrite()">댓글작성</button>
     </div>
-
-    <div id="comment-list">
+    <div id="comment-list" class="commentSection" >
         <table>
             <tr>
                 <th class="commentId">Id</th>
@@ -58,7 +56,6 @@
             </tr>
         </table>
     </div>
-
 </body>
 <script th:inline="javascript">
     var memberName = /*[[${member.memberName}]]*/ '';

@@ -21,20 +21,13 @@
     var memberName = /*[[${member.memberName}]]*/ '';
     document.getElementById("boardWriter").value = memberName;
 
-  const input = document.getElementById('boardTitle');
-  const textarea = document.getElementById('boardContent');
+    const input = document.getElementById('boardTitle');
+    const textarea = document.getElementById('boardContent');
 
-  textarea.addEventListener('input', function() {
-    textarea.style.height = 'auto'; // Reset the height to auto
-    textarea.style.height = textarea.scrollHeight + 'px'; // Set the height based on content
-  });
-
-  input.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-    }
-  });
-
+    textarea.addEventListener('input', function() {
+       textarea.style.height = 'auto'; // Reset the height to auto
+       textarea.style.height = textarea.scrollHeight + 'px'; // Set the height based on content
+    });
 </script>
 </body>
 </html>

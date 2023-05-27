@@ -6,27 +6,39 @@
   <title>update</title>
 </head>
 <body>
-
-<form action="/board/update" method="post" name="updateForm">
-  writer: <input type="text" name="boardWriter" id="boardWriter" class="hidden"> <br>
-
-  <input type="hidden" name="id" th:value="${boardUpdate.id}">
-  <div class='title_form'>
-    <input class="text-field1" autocomplete="on" placeholder="제목을 입력해주세요" type="text" name="boardTitle"th:value="${boardUpdate.boardTitle}">
-  </div><br>
-  <div class='content_form'>
-    <textarea placeholder="내용을 입력해주세요" autocomplete="on" class="text-field2" name="boardContents" cols="30" rows="10"th:text="${boardUpdate.boardContents}"></textarea>
-  </div><br>
-  <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
-  <input class='writing_out' type="button" value="글수정" onclick="boardUpdate()">
-</form>
-
+<div id='desktop-2' class='desktop-2'>
+  <form action="/board/update" method="post" name="updateForm" enctype="multipart/form-data">
+    <input type="hidden" name="id" th:value="${boardUpdate.id}">
+    <input type="text" name="boardWriter" id="boardWriter" class="hidden">
+    <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}" class="hidden">
+    <div class="writeFrame">
+      <input placeholder="제목을 입력해주세요" class="boardTitle" type="text" name="boardTitle" id="boardTitle" th:value="${boardUpdate.boardTitle}">
+      <textarea class="boardContent" name="boardContents" id="boardContent" th:text="${boardUpdate.boardContents}"></textarea>
+      <input value="첨부파일" placeholder="첨부파일" type="file" name="boardFile" class="hidden">
+      <input type="submit" value="글작성" class="submit" id="submit" onclick="boardUpdate()">
+    </div>
+  </form>
+</div>
 <script th:inline="javascript">
+  var memberName = /*[[${member.memberName}]]*/ '';
+  document.getElementById("boardWriter").value = memberName;
+
+  const input = document.getElementById('boardTitle');
+  const textarea = document.getElementById('boardContent');
+
+  textarea.addEventListener('input', function() {
+    textarea.style.height = 'auto'; // Reset the height to auto
+    textarea.style.height = textarea.scrollHeight + 'px'; // Set the height based on content
+  });
+
+  window.onload = () => {
+      textarea.style.height = 'auto'; // Reset the height to auto
+      textarea.style.height = textarea.scrollHeight + 'px'; // Set the height based on content
+  };
+
   const boardUpdate = () => {
     document.updateForm.submit();
   }
-  var memberName = /*[[${member.memberName}]]*/ '';
-  document.getElementById("boardWriter").value = memberName;
 </script>
 </body>
 </html>

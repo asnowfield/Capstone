@@ -18,8 +18,8 @@
     <p onclick="challengePopup()">challenge</p>
     <p>my page</p>
     <div class="imgtag">
-      <img alt="writing" src="/writing.png"/>
-      <img alt="list" src="/list.png"/>
+      <a href="/board/save" onclick="normalWriting()"><img alt="writing" src="/img/writing.png"/></a>
+      <a href="/board/paging"><img alt="list" src="/img/list.png"/></a>
     </div>
   </div>
 </header>
@@ -35,25 +35,14 @@
 <div class="popup hidden" id="popup">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">&times;</span>
-    <h2>challenge!</h2>
+    <h2>Month Challenge</h2>
     <p id="challengeContent"></p>
     <button onclick="challenging()">글쓰러가기</button>
   </div>
 </div>
 <footer>
   <script>
-      closePopup = () => {
-        const popup = document.getElementById("popup");
-        popup.style.display = "none";
-      };
-      challengePopup = () => {
-        const popup = document.getElementById("popup");
-        popup.style.display = "block";
-      };
-      challenging = () => {
-        localStorage.setItem(challenge, "");
-      };
-      const keywords = [
+const keywords = [
   'JanuaryKeyword',
   'FebruaryKeyword',
   'MarchKeyword',
@@ -70,9 +59,24 @@
 
 const currentDate = new Date();
 const currentMonth = currentDate.getMonth();
-
 const selectedKeyword = keywords[currentMonth];
-document.getElementById("challengeContent").value = selectedKeyword;
+document.getElementById("challengeContent").textContent = selectedKeyword;
+const popup = document.getElementById("popup");
+
+      normalWriting = () => {
+        localStorage.setItem("challengeIs","false");
+      }
+      closePopup = () => {
+        popup.style.display = "none";
+      };
+      challengePopup = () => {
+        popup.style.display = "block";
+      };
+      const challenging = () => {
+        localStorage.setItem("challengeIs", "true");
+        localStorage.setItem("challengeTopic", selectedKeyword);
+        location.href = "/board/save";
+      };
 
   </script>
 </footer>

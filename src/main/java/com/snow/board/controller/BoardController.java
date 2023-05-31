@@ -23,6 +23,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final CommentService commentService;
+    private final MemberService memberService;
 
     @GetMapping("/board/save")
     public String saveForm(HttpSession session, Model model) {
@@ -83,27 +84,20 @@ public class BoardController {
         return "redirect:/board/paging";
     }
 
+    @GetMapping("/board/main")
+    public String maining(){
+        return "main";
+    }
     @PostMapping("/member/login")
-    public String login(@ModelAttribute("member") MemberDTO memberDTO, HttpSession session, Model model, @PageableDefault(page = 1) Pageable pageable) {
+    public String login(@ModelAttribute("member") MemberDTO memberDTO, HttpSession session, Model model) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
-            // login
             session.setAttribute("loginEmail", loginResult.getMemberEmail());
             String myEmail = (String) session.getAttribute("loginEmail");
             MemberDTO showMemberDTO = memberService.updateForm(myEmail);
             model.addAttribute("member",showMemberDTO);
-
-            Page<BoardDTO> boardList = boardService.paging(pageable);
-            int blockLimit = 5;
-            int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1;
-            int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
-
-            model.addAttribute("boardList", boardList);
-            model.addAttribute("startPage", startPage);
-            model.addAttribute("endPage", endPage);
-            return "paging";
+            return "main";
         } else {
-            // wrongPassword
             return "login";
         }
     }
@@ -136,7 +130,6 @@ public class BoardController {
         return "index";
     }
 
-    private final MemberService memberService;
 
     @GetMapping("/member/register")
     public String registerForm() {

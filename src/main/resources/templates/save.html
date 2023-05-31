@@ -12,12 +12,15 @@
         <div class="writeFrame">
             <input placeholder="제목을 입력해주세요" class="boardTitle" type="text" name="boardTitle" id="boardTitle">
             <textarea class="boardContent" name="boardContents" id="boardContent"></textarea>
-            <input value="첨부파일" placeholder="첨부파일" type="file" name="boardFile" class="hidden">
+            <input value="첨부파일" placeholder="첨부파일" type="file" name="boardFile">
             <input type="submit" value="글작성" class="submit" id="submit">
         </div>
     </form>
 </div>
 <script th:inline="javascript">
+    if (localStorage.getItem("challengeIs")==="true"){
+        document.getElementById('boardTitle').value="["+localStorage.getItem("challengeTopic")+"]"
+    }
     var memberName = /*[[${member.memberName}]]*/ '';
     document.getElementById("boardWriter").value = memberName;
 

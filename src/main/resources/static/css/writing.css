@@ -2,6 +2,7 @@
 background-repeat: no-repeat;
 box-sizing: border-box;
 background-color:var(--bs-body-bg);
+  font-family: 'Jost', sans-serif;
 }
 html, body {
   min-height: 98vh;

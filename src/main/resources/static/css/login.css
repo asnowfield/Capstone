@@ -2,6 +2,7 @@ a {
 text-decoration: none;
 }
 html{
+  font-family: 'Jost', sans-serif;
 font-size: 1.000em;
 background: linear-gradient(white, rgb(227, 223, 253));
 width: 97vw;

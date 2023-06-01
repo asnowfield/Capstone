@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,7 +46,7 @@ public class BoardService {
             MultipartFile boardFile = boardDTO.getBoardFile(); // 1.
             String originalFilename = boardFile.getOriginalFilename(); // 2.
             String storedFileName = System.currentTimeMillis() + "_" + originalFilename; // 3.
-            String savePath = "/static/img" + storedFileName; // 4.
+            String savePath = "C:/Users/HP13/Downloads/Capstone-master/src/main/resources/static/img/" + storedFileName; // 4.
             boardFile.transferTo(new File(savePath)); // 5.
             BoardEntity boardEntity = BoardEntity.toSaveFileEntity(boardDTO);
             Long savedId = boardRepository.save(boardEntity).getId();

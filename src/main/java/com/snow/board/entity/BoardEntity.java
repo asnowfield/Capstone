@@ -1,7 +1,6 @@
 package com.snow.board.entity;
 
 import com.snow.board.dto.BoardDTO;
-import com.snow.board.dto.MemberDTO;
 import lombok.Getter;
 import lombok.Setter;
 

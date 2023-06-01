@@ -26,7 +26,7 @@
         </table>
             <td class="boardContent" th:text="${board.boardContents}"></td>
             <tr th:if="${board.fileAttached == 1}">
-                <td><img th:src="@{|/static/img/${board.storedFileName}|}"></td>
+                <td><img th:src="@{|/img/${board.storedFileName}|}" alt="NoIMG"></td>
             </tr>
         <div class="bt_wrap">
             <button class="on" onclick="listReq()">목록</button>

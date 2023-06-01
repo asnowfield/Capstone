@@ -1,7 +1,6 @@
 package com.snow.board.dto;
 
 import com.snow.board.entity.BoardEntity;
-import com.snow.board.entity.MemberEntity;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 

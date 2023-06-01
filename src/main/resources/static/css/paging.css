@@ -1,6 +1,7 @@
 html {
 background: linear-gradient(white, rgb(227, 223, 253));
 min-height: 100vh;
+  font-family: 'Jost', sans-serif;
 }
 a {
 text-decoration: none;

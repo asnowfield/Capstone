@@ -68,8 +68,8 @@ create database [db_name];
 create user [db_username] identified by '1234';
 grant all privileges on [db_name].* to [db_username];
 ```
-
-
-# Todo
+# Done
 1. upgrade board that has a function a member.
-2.  on offline store a board in user device and when come to online sand a data to store a board that wrote before
+
+# Todo?
+1. on offline store a board in user device and when come to online sand a data to store a board that wrote before

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+  <link rel="stylesheet" href="/css/memberUpdate.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;400&display=swap" rel="stylesheet">
+</head>
+<body>
+<form action="/member/update" method="post" class="signFrame">
+  <div class="mail">
+  <p>Mail: </p><p th:text="${updateMember.memberEmail}"></p>
+  </div>
+  <input type="hidden" th:value="${updateMember.id}" name="id">
+  <input type="hidden" th:value="${updateMember.memberEmail}" name="memberEmail">
+  <p>비밀번호</p>
+<input type="text" th:value="${updateMember.memberPassword}" name="memberPassword"> <br>
+  <p>이름</p>
+<input type="text" th:value="${updateMember.memberName}" name="memberName"> <br>
+  <input type="submit" value="정보수정" class="registerBTN">
+</form>
+</body>
+</html>

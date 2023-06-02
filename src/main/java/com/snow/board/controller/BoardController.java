@@ -120,17 +120,6 @@ public class BoardController {
         return "paging";
     }
 
-    @GetMapping("/board/login")
-    public String toLogin() {
-        return "login";
-    }
-
-    @PostMapping("/board/login")
-    public String afterLogin() {
-        return "index";
-    }
-
-
     @GetMapping("/member/register")
     public String registerForm() {
         return "register";
@@ -215,5 +204,4 @@ public class BoardController {
         String checkResult = memberService.emailCheck(memberEmail);
         return checkResult;
     }
-
 }

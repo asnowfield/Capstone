@@ -1,6 +1,7 @@
 package com.snow.board.service;
 
 import com.snow.board.dto.BoardDTO;
+import com.snow.board.dto.MemberDTO;
 import com.snow.board.entity.BoardEntity;
 import com.snow.board.entity.BoardFileEntity;
 import com.snow.board.repository.BoardFileRepository;
@@ -10,15 +11,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,7 +34,7 @@ public class BoardService {
             MultipartFile boardFile = boardDTO.getBoardFile();
             String originalFilename = boardFile.getOriginalFilename();
             String storedFileName = System.currentTimeMillis() + "_" + originalFilename;
-            String savePath = "C:/Users/HP13/Downloads/Capstone-master/src/main/resources/static/img/" + storedFileName;
+            String savePath = "C:/Users/HP13/Desktop/" + storedFileName;
             boardFile.transferTo(new File(savePath));
             BoardEntity boardEntity = BoardEntity.toSaveFileEntity(boardDTO);
             Long savedId = boardRepository.save(boardEntity).getId();
@@ -43,16 +42,6 @@ public class BoardService {
             BoardFileEntity boardFileEntity = BoardFileEntity.toBoardFileEntity(board, originalFilename, storedFileName);
             boardFileRepository.save(boardFileEntity);
         }
-    }
-
-    @Transactional
-    public List<BoardDTO> findAll() {
-        List<BoardEntity> boardEntityList = boardRepository.findAll();
-        List<BoardDTO> boardDTOList = new ArrayList<>();
-        for (BoardEntity boardEntity: boardEntityList) {
-            boardDTOList.add(BoardDTO.toBoardDTO(boardEntity));
-        }
-        return boardDTOList;
     }
 
     @Transactional
@@ -78,12 +67,30 @@ public class BoardService {
 
     public void delete(Long id) {boardRepository.deleteById(id);}
 
+    public Page<BoardDTO> main() {
+        int page = 0;
+        int pageLimit = 5;
+        Page<BoardEntity> boardEntities =
+                boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "boardHits")));
+        Page<BoardDTO> boardDTOS = boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime(),board.getFileAttached()));
+        return boardDTOS;
+    }
+
     public Page<BoardDTO> paging(Pageable pageable) {
         int page = pageable.getPageNumber() - 1;
         int pageLimit = 10;
         Page<BoardEntity> boardEntities =
             boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")));
-        Page<BoardDTO> boardDTOS = boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime()));
+        Page<BoardDTO> boardDTOS = boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime(),board.getFileAttached()));
         return boardDTOS;
     }
 }
+//    @Transactional
+//    public List<BoardDTO> findAll() {
+//        List<BoardEntity> boardEntityList = boardRepository.findAll();
+//        List<BoardDTO> boardDTOList = new ArrayList<>();
+//        for (BoardEntity boardEntity: boardEntityList) {
+//            boardDTOList.add(BoardDTO.toBoardDTO(boardEntity));
+//        }
+//        return boardDTOList;
+//    }

@@ -14,30 +14,34 @@
 <header class="header">
   <div class="head">
     <h2>Mi.storia</h2>
-    <input class="searchBar" type="text"/>
+    <input class="searchBar hidden" type="text"/>
   </div>
 <div class="name">
   <p th:text="${member.memberName}"></p><p>님 안녕하세요?</p>
 </div>
-  <div class="navBar">
-    <p>home</p>
-    <p onclick="challengePopup()">challenge</p>
-    <p>my page</p>
     <div class="imgtag">
+      <img id="challenge" onclick="challengePopup()" src="/img/problem-solving.png">
       <a href="/board/save" onclick="normalWriting()"><img alt="writing" src="/img/writing.png"/></a>
       <a href="/board/paging"><img alt="list" src="/img/list.png"/></a>
-      <a href="/member/find">내 정보</a>
-      <a href="/member/logout">Log out</a>
+      <a href="/member/find"><img src="/img/user.png"></a>
+      <a href="/member/logout"><img src="/img/logout.png"></a>
     </div>
-  </div>
 </header>
-<p>hot topic</p>
-<div class="hotTop">
-  <img alt="" class="hotTopImg" src=""/>
-  <img alt="" class="hotTopImg" src=""/>
-  <img alt="" class="hotTopImg" src=""/>
-  <img alt="" class="hotTopImg" src=""/>
-  <img alt="" class="hotTopImg" src=""/>
+<div class="hotopContent">
+  <p>Top Board</p>
+  <tr class="top">
+    <th class="title">제목</th>
+    <th class="writer">글쓴이</th>
+  </tr>
+<tr th:each="board: ${boardList}">
+  <div class="boardEdge">
+    <div class="boardText"><a th:href="@{|/board/${board.id}|(page=${boardList.number + 1})}"th:text="${board.boardTitle}"></a>
+      <td th:text="${board.boardWriter}"></td>
+      <img th:if="${board.fileAttached}" th:src="@{/img/selected.png}" alt="Image">
+    </div>
+    </br>
+  </div>
+</tr>
 </div>
 </body>
 <div class="popup hidden" id="popup">
@@ -70,7 +74,11 @@ const currentMonth = currentDate.getMonth();
 const selectedKeyword = keywords[currentMonth];
 document.getElementById("challengeContent").textContent = selectedKeyword;
 const popup = document.getElementById("popup");
+const imageContainer = document.getElementById('challenge');
 
+imageContainer.addEventListener('mouseover', function() {
+  imageContainer.style.cursor = 'pointer';
+});
       normalWriting = () => {
         localStorage.setItem("challengeIs","false");
       }

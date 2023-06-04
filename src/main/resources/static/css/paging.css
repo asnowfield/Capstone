@@ -31,7 +31,9 @@ text-decoration: none;
 text-align: center;
 color: inherit;
 }
-
+.top img{
+width:20px;
+}
 .board_wrap {
 width: 70vw;
 margin: 0 auto;

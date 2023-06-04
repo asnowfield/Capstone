@@ -41,13 +41,15 @@ public class BoardController {
     }
 
     @PostMapping("/member/login")
-    public String login(@ModelAttribute("member") MemberDTO memberDTO, HttpSession session, Model model) {
+    public String login(@ModelAttribute("member") MemberDTO memberDTO, HttpSession session, Model model, @PageableDefault(page = 1) Pageable pageable) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
             session.setAttribute("loginEmail", loginResult.getMemberEmail());
             String myEmail = (String) session.getAttribute("loginEmail");
             MemberDTO showMemberDTO = memberService.updateForm(myEmail);
             model.addAttribute("member",showMemberDTO);
+            Page<BoardDTO> boardList = boardService.main();
+            model.addAttribute("boardList",boardList);
             return "main";
         } else {
             return "login";
@@ -67,6 +69,7 @@ public class BoardController {
         boardService.save(boardDTO);
         return "redirect:/board/paging";
     }
+
     @GetMapping("/board/paging")
     public String paging(@PageableDefault(page = 1) Pageable pageable, Model model,HttpSession session) {
 
@@ -131,10 +134,12 @@ public class BoardController {
     }
 
     @GetMapping("/board/main")
-    public String maining(Model model, HttpSession session) {
+    public String mainIng(Model model, HttpSession session) {
         String myEmail = (String) session.getAttribute("loginEmail");
         MemberDTO showMemberDTO = memberService.updateForm(myEmail);
         model.addAttribute("member",showMemberDTO);
+        Page<BoardDTO> boardList = boardService.main();
+        model.addAttribute("boardList",boardList);
         return "main";
     }
 

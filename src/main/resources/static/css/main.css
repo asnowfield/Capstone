@@ -8,12 +8,6 @@ img {
   width: 40px;
   height: 40px;
 }
-.hotTopImg{
-  min-width: 100px;
-  min-height: 100px;
-  width: 10vw;
-  height: 10vw;
-}
 .name{
 text-align:center;
 }
@@ -23,9 +17,7 @@ text-align:center;
 .head{
     display: flex;
 }
-.imgtag {
-    float: right;
-}
+
 .hidden {
     display: none;
 }
@@ -58,6 +50,18 @@ text-align:center;
     height: 28px;
     margin: auto 10px;
   }
-  .hotTop{
-text-align: center;
-  }
+.hotopContent{
+display:flex;
+flex-direction:column;
+text-align:center;
+}
+.imgtag{
+display:flex;
+justify-content:space-between;
+}
+.boardText{
+margin:0 auto;
+}
+.boardEdge{
+border-top:1px solid;
+}

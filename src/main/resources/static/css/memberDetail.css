@@ -1,18 +1,24 @@
-  a {
-  text-decoration: none;
-  }
-  html{
-    font-family: 'Jost', sans-serif;
-  font-size: 1.000em;
-  background: linear-gradient(white, rgb(227, 223, 253));
-  width: 97vw;
-  min-height: 100vh;
-  }
-  table{
-  text-align:center;
-  margin:20px auto;
-  }
+a {
+text-decoration: none;
+}
+html{
+font-family: 'Jost', sans-serif;
+font-size: 1.000em;
+background: linear-gradient(white, rgb(227, 223, 253));
+min-height: 100vh;
+}
+body{
+margin-top: 26vh;
+}
+table{
+text-align:center;
+margin:20px auto;
+}
 .section{
 text-align:center;
 margin:0 auto;
+}
+.password{
+display:flex;
+justify-content:center;
 }

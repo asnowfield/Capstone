@@ -13,15 +13,17 @@
 <table>
   <tr>
     <th>email</th>
-    <th>password</th>
     <th>name</th>
   </tr>
   <tr>
     <td th:text="${member.memberEmail}"></td>
-    <td th:text="${member.memberPassword}"></td>
     <td th:text="${member.memberName}"></td>
   </tr>
 </table>
+<div class="password">
+ <p>PassWord</p>
+ <p>🫡저희도 몰라여🫡</p>
+</div>
 <div class="section">
 <a href="/member/update">정보 수정</a>
 <a href="/board/main">홈 으로</a>

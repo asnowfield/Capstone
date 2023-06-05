@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Setter
@@ -24,10 +25,23 @@ public class MemberEntity {
     @Column
     private String memberName;
 
+    public static String encodePassword(String password) {
+        String salt = BCrypt.gensalt(12);
+        String hashedPassword = BCrypt.hashpw(password, salt);
+        return hashedPassword;
+    }
+
+    public static boolean checkPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
+    }
+
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMemberEmail(memberDTO.getMemberEmail());
-        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+
+        String encodedPassword = encodePassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberPassword(encodedPassword);
+
         memberEntity.setMemberName(memberDTO.getMemberName());
         return memberEntity;
     }
@@ -36,9 +50,15 @@ public class MemberEntity {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setId(memberDTO.getId());
         memberEntity.setMemberEmail(memberDTO.getMemberEmail());
-        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+
+        String encodedPassword = encodePassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberPassword(encodedPassword);
+
         memberEntity.setMemberName(memberDTO.getMemberName());
         return memberEntity;
     }
 
+
 }
+
+

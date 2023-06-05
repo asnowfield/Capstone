@@ -14,6 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+
     public void save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
         memberRepository.save(memberEntity);
@@ -23,7 +24,7 @@ public class MemberService {
         Optional<MemberEntity> byMemberEmail = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
         if (byMemberEmail.isPresent()) {
             MemberEntity memberEntity = byMemberEmail.get();
-            if (memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
+            if (memberEntity.checkPassword(memberDTO.getMemberPassword(),memberEntity.getMemberPassword())) {
                 MemberDTO dto = MemberDTO.toMemberDTO(memberEntity);
                 return dto;
             } else {return null;} //Failed to log in

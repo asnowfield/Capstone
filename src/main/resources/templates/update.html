@@ -17,7 +17,7 @@
     <div class="writeFrame">
       <input placeholder="제목을 입력해주세요" class="boardTitle" type="text" name="boardTitle" id="boardTitle" th:value="${boardUpdate.boardTitle}">
       <textarea class="boardContent" name="boardContents" id="boardContent" th:text="${boardUpdate.boardContents}"></textarea>
-      <input value="첨부파일" placeholder="첨부파일" type="file" name="boardFile" class="hidden">
+      <input value="첨부파일" placeholder="첨부파일" type="file" name="boardFile" >
       <input type="submit" value="글작성" class="submit" id="submit" onclick="boardUpdate()">
     </div>
   </form>

@@ -34,7 +34,7 @@ public class BoardService {
             MultipartFile boardFile = boardDTO.getBoardFile();
             String originalFilename = boardFile.getOriginalFilename();
             String storedFileName = System.currentTimeMillis() + "_" + originalFilename;
-            String savePath = "C:/Users/HP13/Desktop/" + storedFileName;
+            String savePath = "C:/Users/HP1/Desktop/" + storedFileName;
             boardFile.transferTo(new File(savePath));
             BoardEntity boardEntity = BoardEntity.toSaveFileEntity(boardDTO);
             Long savedId = boardRepository.save(boardEntity).getId();
